@@ -1,12 +1,12 @@
 # coast_finder include
 
-## Author: 
+## Authors: 
 Tornamic (Kirill Tymoshchenko)
    * Discord: https://pastebin.com/raw/LMBNfFHE
    * Github: https://github.com/Tornamic
    * pawn.wiki https://pawn.wiki/i.php?/user/54232-tornamic/
 
-## Special thanks:
+### Special thanks to:
 Vladimir (NoPressF)
 
 ## Functions:
