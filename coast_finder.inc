@@ -47,6 +47,7 @@ stock FindNearestCoast(Float:near_x, Float:near_y, Float:near_z, &Float:coast_x,
         if(collision)
         {
             CA_FindZ_For2DCoord(rays[i][0], rays[i][1], rays[i][2]);
+            if(!t_cf_IsPointNearWater(rays[i][0], rays[i][1], rays[i][2])) continue;
             new Float:dist = VectorSize(rays[i][0] - near_x, rays[i][1] - near_y, rays[i][2] - near_z);
             if(dist < min_val)
             {
@@ -66,4 +67,14 @@ stock FindNearestCoast(Float:near_x, Float:near_y, Float:near_z, &Float:coast_x,
     coast_y = rays[min_idx][1];
     coast_z = rays[min_idx][2];
     return 1;
+}
+
+static t_cf_IsPointNearWater(Float:x, Float:y, Float:z, Float:dist = 3.0, Float:height = 3.0)
+{
+    new Float:tmp;
+
+	for(new i; i < 6; i++)
+		if(CA_RayCastLine(x + (dist * floatsin(i * 60.0, degrees)), y + (dist * floatcos(i * 60.0, degrees)), z + height, x + (dist * floatsin(i * 60.0, degrees)), y + (dist * floatcos(i * 60.0, degrees)), z - height, tmp, tmp, tmp) == WATER_OBJECT)
+			return 1;
+	return 0;
 }
