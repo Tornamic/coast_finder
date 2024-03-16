@@ -27,7 +27,7 @@ CMD:coast(playerid)
 
 	if(FindNearestCoast(player_x, player_y, player_z, coast_x, coast_y, coast_z))
 	{
-		SetPlayerPos(playerid, coast_x, coast_y, coast_z + 1.0);
+		SetPlayerPos(playerid, coast_x, coast_y, coast_z + 0.5);
 		SendClientMessage(playerid, -1, "Вы успешно телепортировались к ближайшему берегу");
 		return 1;
 	}
