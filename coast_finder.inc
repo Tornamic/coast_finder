@@ -69,7 +69,7 @@ stock FindNearestCoast(Float:near_x, Float:near_y, Float:near_z, &Float:coast_x,
     return 1;
 }
 
-static t_cf_IsPointNearWater(Float:x, Float:y, Float:z, Float:dist = 3.0, Float:height = 3.0)
+static stock t_cf_IsPointNearWater(Float:x, Float:y, Float:z, Float:dist = 3.0, Float:height = 3.0)
 {
     new Float:tmp;
 
