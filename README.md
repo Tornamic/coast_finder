@@ -6,6 +6,9 @@ Tornamic (Kirill Tymoshchenko)
    * Github: https://github.com/Tornamic
    * pawn.wiki https://pawn.wiki/i.php?/user/54232-tornamic/
 
+## Special thanks:
+Vladimir (NoPressF)
+
 ## Functions:
     FindNearestCoast(Float:near_x, Float:near_y, Float:near_z, &Float:coast_x, &Float:coast_y, &Float:coast_z);
     
