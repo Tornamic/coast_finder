@@ -10,7 +10,7 @@ Special thanks to:
     Vladimir (NoPressF)
 
 Functions:
-	FindNearestCoast(Float:near_x, Float:near_y, Float:near_z, &Float:coast_x, &Float:coast_y, &Float:coast_z);
+	FindNearestCoast(Float:near_x, Float:near_y, Float:near_z, &Float:coast_x, &Float:coast_y, &Float:coast_z, Float:offset = 3.0, Float:height_limit = 5.0);
 
 Dependencies:
     ColAndreas plugin https://github.com/Pottus/ColAndreas
@@ -30,7 +30,7 @@ Dependencies:
 #define     RAY_LENGTH              (Float:1000.0)
 #define     POINT_ABOVE_WATER       (Float:0.1)
 
-stock FindNearestCoast(Float:near_x, Float:near_y, Float:near_z, &Float:coast_x, &Float:coast_y, &Float:coast_z)
+stock FindNearestCoast(Float:near_x, Float:near_y, Float:near_z, &Float:coast_x, &Float:coast_y, &Float:coast_z, Float:offset = 3.0, Float:height_limit = 5.0)
 {
     new 
         Float:rays[RAY_COUNT][3],
@@ -39,16 +39,34 @@ stock FindNearestCoast(Float:near_x, Float:near_y, Float:near_z, &Float:coast_x,
         Float:e_y,
         min_idx = -1,
         Float:min_val = FLOAT_INFINITY,
-        collision
+        collision,
+        Float:move_x,
+        Float:move_y
     ;
     for(; i < RAY_COUNT; ++i)
     {
-        e_x = near_x + floatsin(-(RAY_ANGLE * i), degrees) * RAY_LENGTH;
-        e_y = near_y + floatsin(-(RAY_ANGLE * i), degrees) * RAY_LENGTH;
+        move_x = floatsin(-(RAY_ANGLE * i), degrees);
+        move_y = floatcos(-(RAY_ANGLE * i), degrees);
+        e_x = near_x + move_x * RAY_LENGTH;
+        e_y = near_y + move_y * RAY_LENGTH;
         collision = CA_RayCastLine(near_x, near_y, POINT_ABOVE_WATER, e_x, e_y, POINT_ABOVE_WATER, rays[i][0], rays[i][1], rays[i][2]);
         if(collision)
         {
+            if(offset != 0.0)
+            {
+                new 
+                    multiplier = -1,
+                    Float:tmp    
+                ;
+
+                if(CA_RayCastLine(near_x, near_y, 150.0, near_x, near_y, -1.0, tmp, tmp, tmp) == WATER_OBJECT)
+                    multiplier = 1;
+
+                rays[i][0] += move_x * offset * multiplier;
+                rays[i][1] += move_y * offset * multiplier;
+            }
             CA_FindZ_For2DCoord(rays[i][0], rays[i][1], rays[i][2]);
+            if(rays[i][2] - POINT_ABOVE_WATER > height_limit) continue;
             if(!t_cf_IsPointNearWater(rays[i][0], rays[i][1], rays[i][2])) continue;
             new Float:dist = VectorSize(rays[i][0] - near_x, rays[i][1] - near_y, rays[i][2] - near_z);
             if(dist < min_val)
