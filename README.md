@@ -10,7 +10,7 @@ Tornamic (Kirill Tymoshchenko)
 Vladimir (NoPressF)
 
 ## Functions:
-    FindNearestCoast(Float:near_x, Float:near_y, Float:near_z, &Float:coast_x, &Float:coast_y, &Float:coast_z);
+    FindNearestCoast(Float:near_x, Float:near_y, Float:near_z, &Float:coast_x, &Float:coast_y, &Float:coast_z, Float:offset = 3.0, Float:height_limit = 5.0);
     
 ## Dependencies:
   ColAndreas plugin https://github.com/Pottus/ColAndreas
