@@ -10,13 +10,15 @@ Tornamic (Kirill Tymoshchenko)
 Vladimir (NoPressF)
 
 ## Functions:
-    FindNearestCoast(Float:near_x, Float:near_y, Float:near_z, &Float:coast_x, &Float:coast_y, &Float:coast_z, Float:offset = 3.0, Float:height_limit = 5.0);
-    IsPlayerNearCoast(playerid, Float:radius = 10.0, Float:height_limit = 10.0);
-    IsVehicleNearCoast(vehicleid, Float:radius = 10.0, Float:height_limit = 10.0);
-    IsPointNearCoast(Float:point_x, Float:point_y, Float:point_z, Float:radius = 10.0, Float:height_limit = 10.0);
-    GetDistanceToNearestCoast(Float:near_x, Float:near_y, Float:near_z, &Float:distance);
-    GetPlayerDistanceToNearestCoast(playerid, &Float:distance);
-    GetVehDistanceToNearestCoast(vehicleid, &Float:distance);
+```pawn
+FindNearestCoast(Float:near_x, Float:near_y, Float:near_z, &Float:coast_x, &Float:coast_y, &Float:coast_z, Float:offset = 3.0, Float:height_limit = 5.0);
+IsPlayerNearCoast(playerid, Float:radius = 10.0, Float:height_limit = 10.0);
+IsVehicleNearCoast(vehicleid, Float:radius = 10.0, Float:height_limit = 10.0);
+IsPointNearCoast(Float:point_x, Float:point_y, Float:point_z, Float:radius = 10.0, Float:height_limit = 10.0);
+GetDistanceToNearestCoast(Float:near_x, Float:near_y, Float:near_z, &Float:distance);
+GetPlayerDistanceToNearestCoast(playerid, &Float:distance);
+GetVehDistanceToNearestCoast(vehicleid, &Float:distance);
+```
 ## Dependencies:
   ColAndreas plugin https://github.com/Pottus/ColAndreas
 ## Example:
